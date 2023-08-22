@@ -110,25 +110,17 @@ private DefaultTableModel modelo = new DefaultTableModel(){
     }// </editor-fold>//GEN-END:initComponents
 
     private void jtNombreKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtNombreKeyReleased
-        // TODO add your handling code here:
-//        String texto=jtNombre.getText().toUpperCase().toString();
-        
+        // TODO add your handling code here: 
         borrarFilas();
-//        
-//        if (jtNombre.getText().trim().length()==0) {
-//              borrarFilas();
-//        }
         
         for(Producto produ:Menu.ListaProductos){
-            if(produ.getDescripcion().startsWith(jtNombre.getText().toString())){
-               
+            if(produ.getDescripcion().startsWith(jtNombre.getText())){ 
                 modelo.addRow(new Object[]{
                     produ.getCodigo(),
                     produ.getDescripcion(),
                     produ.getPrecio(),
                     produ.getStock()
                 });
-                
             }
                    
         }

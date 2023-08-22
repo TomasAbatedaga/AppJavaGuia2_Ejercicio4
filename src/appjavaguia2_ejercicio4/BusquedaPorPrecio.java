@@ -54,6 +54,12 @@ private DefaultTableModel modelo = new DefaultTableModel(){
 
         jLabel3.setText("y");
 
+        jtPrecio2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtPrecio2ActionPerformed(evt);
+            }
+        });
+
         jtProductos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -108,6 +114,30 @@ private DefaultTableModel modelo = new DefaultTableModel(){
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jtPrecio2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtPrecio2ActionPerformed
+        // TODO add your handling code here:
+        borrarFilas();
+        
+        Double precioMin = Double.parseDouble(jtPrecio1.getText());
+        Double precioMax = Double.parseDouble(jtPrecio2.getText());
+        
+        for (Producto prod: Menu.ListaProductos) {
+            if (prod.getPrecio()>precioMin && prod.getPrecio()<precioMax) {
+                modelo.addRow(new Object[]{
+                    prod.getCodigo(),
+                    prod.getDescripcion(),
+                    prod.getPrecio(),
+                    prod.getStock()
+                });
+                
+            }
+            
+        }
+            
+        
+        
+    }//GEN-LAST:event_jtPrecio2ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
@@ -118,13 +148,22 @@ private DefaultTableModel modelo = new DefaultTableModel(){
     private javax.swing.JTextField jtPrecio2;
     private javax.swing.JTable jtProductos;
     // End of variables declaration//GEN-END:variables
-private void armarCabecera(){
+
+    private void armarCabecera(){
     modelo.addColumn("Codigo");
     modelo.addColumn("Descripcion");
     modelo.addColumn("Precio");
     modelo.addColumn("Stock");
     jtProductos.setModel(modelo);
 }
+private void borrarFilas() {
+
+        int f = jtProductos.getRowCount() - 1;
+        for (; f >= 0; f--) {
+            modelo.removeRow(f);
+        }
+
+    }
 
 
 }
